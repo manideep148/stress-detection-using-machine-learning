@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 df=pd.read_csv(r"C:\Users\manid\OneDrive\Desktop\stress detection using ML\week3\stress.csv")
-#print(df.isnull().sum)
+print(df.isnull().sum)
 
 import nltk
 import re
@@ -27,7 +27,7 @@ def clean (text):
 
 df ["text"] = df["text"]. apply (clean)
 
-#print(df['text'])
+print(df['text'])
 
 import matplotlib. pyplot as plt
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
@@ -37,7 +37,7 @@ wordcloud = WordCloud( stopwords=stopwords, background_color="white"). generate(
 plt.figure(figsize=(15, 10))
 plt. imshow(wordcloud, interpolation='bilinear')
 plt. axis("off")
-#plt. show()
+plt. show()
 
 from sklearn. feature_extraction. text import CountVectorizer 
 from sklearn. model_selection import train_test_split
@@ -45,13 +45,13 @@ x = np.array (df["text"])
 y = np.array (df ["label"])
 cv =CountVectorizer ()
 X =cv. fit_transform(x)
-#print(X)
+print(X)
 xtrain, xtest, ytrain, ytest = train_test_split(X,y ,test_size=0.33, random_state=42)
 
 from sklearn.naive_bayes import BernoulliNB 
 model=BernoulliNB() 
 model.fit(xtrain,ytrain)
-#print(model)
+print(model)
 
 user=input("Enter the text") 
 data=cv.transform([user]).toarray() 
